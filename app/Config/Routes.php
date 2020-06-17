@@ -36,6 +36,7 @@ $routes->add('/login', 'Login::index');
 $routes->add('/logout', 'Login::logout');
 $routes->add('/new', 'Article::new');
 $routes->add('/edit/(:num)', 'Article::edit/$1');
+$routes->add('/remove/(:num)', 'Article::remove/$1');
 
 /**
  * --------------------------------------------------------------------

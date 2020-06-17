@@ -118,4 +118,27 @@ class Article extends BaseController
 
         echo view('edit', compact('article', 'result'));
     }
+
+    public function remove($id)
+    {
+        if (!session()->get('logged')) {
+            return redirect()->to('/login');
+        }
+
+        $article = $this->articleModel->find($id);
+
+        if ($this->request->getPost()) {
+            $image = FCPATH . 'uploads' . DIRECTORY_SEPARATOR . $article->image;
+
+            if (file_exists($image)) {
+                unlink($image);
+            }
+
+            $this->articleModel->delete($id);
+
+            return redirect()->to('/');
+        }
+
+        echo view('remove');
+    }
 }

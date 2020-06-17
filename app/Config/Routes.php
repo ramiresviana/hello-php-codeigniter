@@ -34,6 +34,7 @@ $routes->get('/', 'Article::index');
 $routes->get('/article/(:num)', 'Article::article/$1');
 $routes->add('/login', 'Article::login');
 $routes->add('/new', 'Article::new');
+$routes->add('/edit/(:num)', 'Article::edit/$1');
 
 /**
  * --------------------------------------------------------------------

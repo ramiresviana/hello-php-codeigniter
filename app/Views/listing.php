@@ -6,33 +6,17 @@
     There are 100 posts <div class="admin-actions"><button>Add new</button></div>
 </header>
 <main>
-    <a href="#">
+<?php foreach($articles as $article): ?>
+    <a href="<?= base_url(['article', $article->id]) ?>">
         <article>
-            <img src="img.jpg">
+            <img src="<?= base_url($article->image) ?>">
             <div>
-                <h2>Vivamus euismod a tellus eget interdum. Aenean ac.</h2>
-                <p>Aliquam vulputate mi in vulputate aliquam. Mauris ultrices vel felis eget tempus. Morbi a est at lacus malesuada ultrices ac quis turpis. Curabitur ante metus, malesuada eget neque eu, ornare suscipit ligula. Aliquam suscipit cursus eros, ut tincidunt nulla laoreet a. Donec aliquam urna vel pellentesque sodales.</p>
+                <h2><?= $article->title ?></h2>
+                <p><?= $article->content ?></p>
             </div>
         </article>
     </a>
-    <a href="#">
-        <article>
-            <img src="img.jpg">
-            <div>
-                <h2>Vivamus euismod a tellus eget interdum. Aenean ac.</h2>
-                <p>Aliquam vulputate mi in vulputate aliquam. Mauris ultrices vel felis eget tempus. Morbi a est at lacus malesuada ultrices ac quis turpis. Curabitur ante metus, malesuada eget neque eu, ornare suscipit ligula. Aliquam suscipit cursus eros, ut tincidunt nulla laoreet a. Donec aliquam urna vel pellentesque sodales.</p>
-            </div>
-        </article>
-    </a>
-    <a href="#">
-        <article>
-            <img src="img.jpg">
-            <div>
-                <h2>Vivamus euismod a tellus eget interdum. Aenean ac.</h2>
-                <p>Aliquam vulputate mi in vulputate aliquam. Mauris ultrices vel felis eget tempus. Morbi a est at lacus malesuada ultrices ac quis turpis. Curabitur ante metus, malesuada eget neque eu, ornare suscipit ligula. Aliquam suscipit cursus eros, ut tincidunt nulla laoreet a. Donec aliquam urna vel pellentesque sodales.</p>
-            </div>
-        </article>
-    </a>
+<?php endforeach ?>
 </main>
 <footer>
     <button>Next Page</button>

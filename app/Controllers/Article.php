@@ -40,7 +40,7 @@ class Article extends BaseController
         $rules = [
             'title' => 'required',
             'content' => 'required',
-            'image' => 'required'
+            'image' => 'uploaded[image]|is_image[image]'
         ];
 
         $result = null;
@@ -49,10 +49,13 @@ class Article extends BaseController
             $validation->setRules($rules);
 
             if ($validation->withRequest($this->request)->run()) {
+                $imageName = $this->request->getFile('image')->getRandomName();
+                $this->request->getFile('image')->move(FCPATH . 'uploads', $imageName);
+
                 $article = [
                     'title' => $this->request->getPost('title'),
                     'content' => $this->request->getPost('content'),
-                    'image' => $this->request->getPost('image')
+                    'image' => $imageName
                 ];
 
                 $this->articleModel->insert($article);

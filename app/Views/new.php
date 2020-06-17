@@ -7,7 +7,7 @@
     <h1>Hello HTML</h1>
 </header>
 <main>
-    <form method="POST">
+    <form enctype="multipart/form-data" method="POST" >
         <label>Title</label>
         <input name="title" value="<?= set_value('title') ?>"/>
         <label>Content</label>

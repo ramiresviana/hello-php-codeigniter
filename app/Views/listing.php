@@ -12,7 +12,7 @@
 <?php foreach($articles as $article): ?>
     <a href="<?= base_url(['article', $article->id]) ?>">
         <article>
-            <img src="<?= base_url($article->image) ?>">
+            <img src="<?= base_url(['uploads', $article->image]) ?>">
             <div>
                 <h2><?= $article->title ?></h2>
                 <p><?= $article->content ?></p>

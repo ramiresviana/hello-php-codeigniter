@@ -7,7 +7,7 @@
     <h1>Hello HTML</h1>
 </header>
 <main>
-    <img class="full-img" src="<?= base_url($article->image) ?>">
+    <img class="full-img" src="<?= base_url(['uploads', $article->image]) ?>">
     <h2><?= $article->title ?></h2>
     <p><?= $article->content ?></p>
 

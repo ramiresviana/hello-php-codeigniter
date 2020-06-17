@@ -1,5 +1,8 @@
-<?= view('parts/header') ?>
+<?= $this->extend('layout') ?>
 
+<?= $this->section('title'); echo 'Article'; $this->endSection(); ?>
+
+<?= $this->section('content') ?>
 <header>
     <h1>Hello HTML</h1>
 </header>
@@ -14,5 +17,4 @@
         <button class="red">Remove</button>
     </div>
 </main>
-
-<?= view('parts/footer') ?>
+<?= $this->endSection() ?>

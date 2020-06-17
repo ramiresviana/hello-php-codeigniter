@@ -1,5 +1,8 @@
-<?= view('parts/header') ?>
+<?= $this->extend('layout') ?>
 
+<?= $this->section('title'); echo 'Login'; $this->endSection(); ?>
+
+<?= $this->section('content') ?>
 <header class="text-center">
     <h1>Hello HTML</h1>
 </header>
@@ -12,5 +15,4 @@
         <button>Submit</button>
     </form>
 </main>
-
-<?= view('parts/footer') ?>
+<?= $this->endSection() ?>

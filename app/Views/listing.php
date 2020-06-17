@@ -1,5 +1,8 @@
-<?= view('parts/header') ?>
+<?= $this->extend('layout') ?>
 
+<?= $this->section('title'); echo 'Index'; $this->endSection(); ?>
+
+<?= $this->section('content') ?>
 <header>
     <h1>Hello HTML</h1>
     Logged as admin <div class="admin-actions"><button class="red">Logout</button></div>
@@ -21,5 +24,4 @@
 <footer>
     <button>Next Page</button>
 </footer>
-
-<?= view('parts/footer') ?>
+<?= $this->endSection() ?>

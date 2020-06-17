@@ -7,12 +7,13 @@
     <h1>Hello HTML</h1>
 </header>
 <main>
-    <form class="form-center">
+    <form method="POST" class="form-center">
         <label>Username</label>
-        <input />
+        <input name="username" value="<?= set_value('username') ?>"/>
         <label>Password</label>
-        <input type="password" />
+        <input name="password" type="password" />
         <button>Submit</button>
     </form>
+<p><?= $result ?></p>
 </main>
 <?= $this->endSection() ?>

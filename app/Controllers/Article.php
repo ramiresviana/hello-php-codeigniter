@@ -14,9 +14,12 @@ class Article extends BaseController
 
     public function index()
     {
-        $articles = $this->articleModel->findAll();
+        \Config\Services::pager();
 
-        echo view('listing', compact('articles'));
+        $articles = $this->articleModel->paginate(5);
+        $pager = $this->articleModel->pager;
+
+        echo view('listing', compact('articles', 'pager'));
     }
 
     public function article($id)

@@ -24,6 +24,11 @@
 <?php endforeach ?>
 </main>
 <footer>
-    <button>Next Page</button>
+<?php if($pager->getPreviousPageURI()): ?>
+    <a href="<?= $pager->getPreviousPageURI() ?>"><button>Previous Page</button></a>
+<?php endif ?>
+<?php if($pager->getNextPageURI()): ?>
+    <a href="<?= $pager->getNextPageURI() ?>"><button>Next Page</button></a>
+<?php endif ?>
 </footer>
 <?= $this->endSection() ?>

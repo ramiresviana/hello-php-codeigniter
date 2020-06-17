@@ -11,10 +11,12 @@
     <h2><?= $article->title ?></h2>
     <p><?= $article->content ?></p>
 
+<?php if (session()->get('logged')): ?>
     <div class="admin-actions">
         <hr>
-        <button>Edit</button>
-        <button class="red">Remove</button>
+        <a href="<?= base_url(['edit', $article->id]) ?>"><button>Edit</button></a>
+        <a href="<?= base_url(['remove', $article->id]) ?>"><button class="red">Remove</button></a>
     </div>
+<?php endif ?>
 </main>
 <?= $this->endSection() ?>

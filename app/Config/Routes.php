@@ -32,7 +32,8 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Article::index');
 $routes->get('/article/(:num)', 'Article::article/$1');
-$routes->add('/login', 'Article::login');
+$routes->add('/login', 'Login::index');
+$routes->add('/logout', 'Login::logout');
 $routes->add('/new', 'Article::new');
 $routes->add('/edit/(:num)', 'Article::edit/$1');
 

@@ -5,8 +5,10 @@
 <?= $this->section('content') ?>
 <header>
     <h1>Hello HTML</h1>
-    Logged as admin <div class="admin-actions"><button class="red">Logout</button></div>
-    There are 100 posts <div class="admin-actions"><button>Add new</button></div>
+<?php if (session()->get('logged')): ?>
+    Logged as admin <div class="admin-actions"><a href="<?= base_url('logout') ?>"><button class="red">Logout</button></a></div>
+    There are 100 posts <div class="admin-actions"><a href="<?= base_url('add') ?>"><button>Add new</button></a></div>
+<?php endif ?>
 </header>
 <main>
 <?php foreach($articles as $article): ?>

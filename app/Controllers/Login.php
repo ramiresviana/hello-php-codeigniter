@@ -6,6 +6,10 @@ class Login extends BaseController
 {
     public function index()
     {
+        if ($this->session->get('logged')) {
+            return redirect()->to('/');
+        }
+
         helper('form');
         $validation = \Config\Services::validation();
 
@@ -41,6 +45,10 @@ class Login extends BaseController
 
     public function logout()
     {
+        if ($this->session->get('logged')) {
+            return redirect()->to('/');
+        }
+
         if ($this->request->getPost()) {
             $this->session->destroy();
             return redirect()->to('/');

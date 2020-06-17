@@ -23,6 +23,10 @@ class Article extends BaseController
     {
         $article = $this->articleModel->find($id);
 
+        if ($article == null) {
+            return redirect()->to('/');
+        }
+
         echo view('article', compact('article'));
     }
 
@@ -75,6 +79,10 @@ class Article extends BaseController
 
         $article = $this->articleModel->find($id);
 
+        if ($article == null) {
+            return redirect()->to('/');
+        }
+
         helper('form');
         $validation = \Config\Services::validation();
 
@@ -126,6 +134,10 @@ class Article extends BaseController
         }
 
         $article = $this->articleModel->find($id);
+
+        if ($article == null) {
+            return redirect()->to('/');
+        }
 
         if ($this->request->getPost()) {
             $image = FCPATH . 'uploads' . DIRECTORY_SEPARATOR . $article->image;

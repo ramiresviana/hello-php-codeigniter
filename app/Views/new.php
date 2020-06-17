@@ -7,14 +7,15 @@
     <h1>Hello HTML</h1>
 </header>
 <main>
-    <form>
+    <form method="POST">
         <label>Title</label>
-        <input />
+        <input name="title" value="<?= set_value('title') ?>"/>
         <label>Content</label>
-        <textarea rows="6"></textarea>
+        <textarea name="content" rows="6"><?= set_value('content') ?></textarea>
         <label>Title</label>
-        <input type="file" />
+        <input name="image" type="file" />
         <button>Submit</button>
     </form>
+<p><?= $result ?></p>
 </main>
 <?= $this->endSection() ?>

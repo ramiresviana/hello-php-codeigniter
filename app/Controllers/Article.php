@@ -33,6 +33,36 @@ class Article extends BaseController
 
     public function new()
     {
-        echo view('new');
+        helper('form');
+        $validation = \Config\Services::validation();
+
+
+        $rules = [
+            'title' => 'required',
+            'content' => 'required',
+            'image' => 'required'
+        ];
+
+        $result = null;
+
+        if ($this->request->getPost()) {
+            $validation->setRules($rules);
+
+            if ($validation->withRequest($this->request)->run()) {
+                $article = [
+                    'title' => $this->request->getPost('title'),
+                    'content' => $this->request->getPost('content'),
+                    'image' => $this->request->getPost('image')
+                ];
+
+                $this->articleModel->insert($article);
+
+                $result = 'Article created';
+            } else {
+                $result = $validation->listErrors();
+            }
+        }
+
+        echo view('new', compact('result'));
     }
 }

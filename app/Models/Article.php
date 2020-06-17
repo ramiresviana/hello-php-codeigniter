@@ -6,6 +6,7 @@ use CodeIgniter\Model;
 
 class Article extends Model
 {
+    protected $allowedFields = ['title', 'content', 'image'];
     protected $table = 'article';
     protected $primaryKey = 'id';
     protected $returnType = 'object';

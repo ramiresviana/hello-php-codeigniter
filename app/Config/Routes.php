@@ -38,6 +38,8 @@ $routes->add('/new', 'Article::new');
 $routes->add('/edit/(:num)', 'Article::edit/$1');
 $routes->add('/remove/(:num)', 'Article::remove/$1');
 
+$routes->resource('/api/articles', ['controller' => 'Api']);
+
 /**
  * --------------------------------------------------------------------
  * Additional Routing

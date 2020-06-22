@@ -10,4 +10,9 @@ class Article extends Model
     protected $table = 'article';
     protected $primaryKey = 'id';
     protected $returnType = 'object';
+
+    public function count()
+    {
+        return $this->countAll();
+    }
 }

@@ -11,6 +11,7 @@ class Article extends Model
     protected $primaryKey = 'id';
     protected $returnType = 'object';
 
+    // Returns the number of articles
     public function count()
     {
         return $this->countAll();

@@ -19,6 +19,7 @@ class Article extends BaseController
         $articles = $this->articleModel->paginate(5);
         $pager = $this->articleModel->pager;
 
+        // Render view
         echo view('listing', compact('articles', 'pager'));
     }
 
@@ -26,15 +27,18 @@ class Article extends BaseController
     {
         $article = $this->articleModel->find($id);
 
+        // Check if article exists
         if ($article == null) {
             return redirect()->to('/');
         }
 
+        // Render view
         echo view('article', compact('article'));
     }
 
     public function new()
     {
+        // Checks if user is authenticated
         if (!session()->get('logged')) {
             return redirect()->to('/login');
         }
@@ -53,6 +57,7 @@ class Article extends BaseController
         if ($this->request->getPost()) {
             $validation->setRules($rules);
 
+            // Validate the input
             if ($validation->withRequest($this->request)->run()) {
                 $imageName = $this->request->getFile('image')->getRandomName();
                 $this->request->getFile('image')->move(FCPATH . 'uploads', $imageName);
@@ -71,17 +76,20 @@ class Article extends BaseController
             }
         }
 
+        // Render view
         echo view('new', compact('result'));
     }
 
     public function edit($id)
     {
+        // Checks if user is authenticated
         if (!session()->get('logged')) {
             return redirect()->to('/login');
         }
 
         $article = $this->articleModel->find($id);
 
+        // Check if article exists
         if ($article == null) {
             return redirect()->to('/');
         }
@@ -100,6 +108,7 @@ class Article extends BaseController
         if ($this->request->getPost()) {
             $validation->setRules($rules);
 
+            // Validate the input
             if ($validation->withRequest($this->request)->run()) {
                 $uploadsPath = FCPATH . 'uploads' . DIRECTORY_SEPARATOR;
                 $oldImage = FCPATH . 'uploads' . DIRECTORY_SEPARATOR . $article->image;
@@ -127,17 +136,20 @@ class Article extends BaseController
             }
         }
 
+        // Render view
         echo view('edit', compact('article', 'result'));
     }
 
     public function remove($id)
     {
+        // Checks if user is authenticated
         if (!session()->get('logged')) {
             return redirect()->to('/login');
         }
 
         $article = $this->articleModel->find($id);
 
+        // Check if article exists
         if ($article == null) {
             return redirect()->to('/');
         }
@@ -154,6 +166,7 @@ class Article extends BaseController
             return redirect()->to('/');
         }
 
+        // Render view
         echo view('remove');
     }
 }

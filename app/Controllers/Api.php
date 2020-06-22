@@ -13,6 +13,7 @@ class Api extends BaseController
         $this->userModel = new \App\Models\User();
     }
 
+    // Checks user credentials and returns error
     protected function auth()
     {
         $username = $this->request->getServer('PHP_AUTH_USER');
@@ -31,6 +32,7 @@ class Api extends BaseController
     {
         $authError = $this->auth();
 
+        // Checks user credentials
         if ($authError) {
             return $authError;
         }
@@ -48,6 +50,7 @@ class Api extends BaseController
 
         $validation->setRules($rules);
 
+        // Validate the input
         if ($validation->withRequest($this->request)->run()) {
             $imageName = $this->request->getFile('image')->getRandomName();
             $this->request->getFile('image')->move(FCPATH . 'uploads', $imageName);
@@ -65,6 +68,7 @@ class Api extends BaseController
             $result = $validation->getErrors();
         }
 
+        // Result response
         return $this->response->setJSON($result);
     }
 
@@ -80,10 +84,12 @@ class Api extends BaseController
 
         $articles = $this->articleModel->paginate($itemsPerPage, 'articles', $page);
 
+        // Pagination result
         $result = new \stdClass;
         $result->numberOfPages = $numberOfPages;
         $result->articles = $articles;
 
+        // Result response
         return $this->response->setJSON($result);
     }
 
@@ -91,10 +97,12 @@ class Api extends BaseController
     {
         $article = $this->articleModel->find($id);
 
+        // Check if article exists
         if ($article == null) {
             return $this->response->setStatusCode(404)->setJSON('not_found');
         }
 
+        // Result response
         return $this->response->setJSON($article);
     }
 
@@ -102,12 +110,14 @@ class Api extends BaseController
     {
         $authError = $this->auth();
 
+        // Checks user credentials
         if ($authError) {
             return $authError;
         }
 
         $article = $this->articleModel->find($id);
 
+        // Check if article exists
         if ($article == null) {
             return $this->response->setStatusCode(404)->setJSON('not_found');
         }
@@ -125,6 +135,7 @@ class Api extends BaseController
 
         $validation->setRules($rules);
 
+        // Validate the input
         if ($validation->withRequest($this->request)->run()) {
             $uploadsPath = FCPATH . 'uploads' . DIRECTORY_SEPARATOR;
             $oldImage = FCPATH . 'uploads' . DIRECTORY_SEPARATOR . $article->image;
@@ -151,6 +162,7 @@ class Api extends BaseController
             $result = $validation->getErrors();
         }
 
+        // Result response
         return $this->response->setJSON($result);
     }
 
@@ -163,12 +175,14 @@ class Api extends BaseController
     {
         $auth = $this->auth();
 
+        // Checks user credentials
         if ($auth) {
             return $auth;
         }
 
         $article = $this->articleModel->find($id);
 
+        // Check if article exists
         if ($article == null) {
             return $this->response->setStatusCode(404)->setJSON('not_found');
         }
@@ -185,6 +199,7 @@ class Api extends BaseController
 
         $result = 'article_deleted';
 
+        // Result response
         return $this->response->setJSON($result);
     }
 }

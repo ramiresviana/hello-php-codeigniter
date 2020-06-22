@@ -45,7 +45,7 @@ class Login extends BaseController
 
     public function logout()
     {
-        if ($this->session->get('logged')) {
+        if (!$this->session->get('logged')) {
             return redirect()->to('/');
         }
 
